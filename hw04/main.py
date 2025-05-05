@@ -30,10 +30,10 @@ def show_phone(args, contacts):
     
 # Функція для відображення всіх контактів
 def show_all_contacts(contacts): 
-    result = []                                          #Створює пустий словник для зберігання контактів
+    result = []                                          #Створює пустий список для зберігання контактів
     for name, phone in contacts.items() :
-        result.append(f'{name}: {phone}')                      #Додає контакти до словнику
-    return result                                        #Повертає словник контактів
+        result.append(f'{name}: {phone}')                      #Додає контакти до списку
+    return result                                        #Повертає список контактів
 
 
 # Основна функція програми де реалізується логіка вище вказаних функції
