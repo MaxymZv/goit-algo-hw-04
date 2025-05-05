@@ -15,14 +15,14 @@ def add_contacts(args, contacts):
 def change_contacts(args, contacts): 
     name, new_phone = args                               #Приймає як аргументи ім'я контакту та його новий номер
     if name in contacts:                                 #Перевіряє чи існує контакт
-        contacts[name] = new_phone
+        contacts[name] = new_phone                       #Якщо існує, змінює номер контакту
         return f'Contact {name} changed to {new_phone}!'
     else:                                                #Якщо контакт не існує, повертає повідомлення про помилку
         return f'Contact {name} not found!'
 
 # Функція для відображення номеру контакту    
-def show_phone(contacts): 
-    name = args[0]                                       # type: ignore #Приймає як аргумент ім'я контакту
+def show_phone(args, contacts): 
+    name = args[0]                                       #Приймає як аргумент ім'я контакту
     if name in contacts:                                 #Перевіряє чи існує контакт
         return f'{name}: {contacts[name]}'               #Повертає номер контакту
     else:
@@ -30,8 +30,10 @@ def show_phone(contacts):
     
 # Функція для відображення всіх контактів
 def show_all_contacts(contacts): 
-    if contacts:                                         #Перевіряє чи словник контактів не пустий
-        return f'{name}: {phone}'                        # type: ignore #Повертає словник з всіма контактами
+    result = []                                          #Створює пустий список для зберігання контактів
+    for name, phone in contacts.items() :
+        result.append(f'{name}: {phone}')                #Додає контакти до списку
+    return result                                        #Повертає список контактів
 
 
 # Основна функція програми де реалізується логіка вище вказаних функції
@@ -54,7 +56,7 @@ def main():
         elif command == 'change':
             print(change_contacts(args, contacts))
         elif command == 'phone':
-            print(show_phone(contacts))
+            print(show_phone(args, contacts))
         else:                                             #В разі введення невірної команди виводить повідомлення про помилку
             print('Invalid command!') 
 
